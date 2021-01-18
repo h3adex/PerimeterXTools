@@ -1,0 +1,6 @@
+.env
+.docker_build/
+bin/
+.idea
+/.idea
+.idea/

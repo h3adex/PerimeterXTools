@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mauritz">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+
+
+<h1 class="title">PerimeterX Decode/Encode</h1>
+<div class="decoder">
+    <div class="control">
+        <label>
+            <textarea class="textarea has-fixed-size" name="payload" id="input" cols="70" rows="30" placeholder="aUkQRhAIEGJqEB4QVhAISRBiagMQCBAQHhBiagAQCBAQHhBiagEQCBAQHhBiagYQCBAQHhBiagcQCBAQHhBiagQQCBAQHhBiagUQCBAQHhBiagoQCBAQHhBiagsQCBAQHhBiagMCEAgQEE9Pbw=="></textarea>
+        </label>
+    </div>
+    <div class="control">
+        <label>
+            <textarea class="textarea has-fixed-size" name="payload" id="output" cols="70" rows="30" readonly></textarea>
+        </label>
+    </div>
+</div>
+<button  id="decode" class="button is-light">Decode</button>
+<button  id="encode" class="button is-light">Encode</button>
+<button  onclick="prettyPrint()" class="button is-success is-light">Prettify JSON</button>
+<script src="/static/js/index.js"></script>
+
+</body>
+</html>

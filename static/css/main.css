@@ -1,0 +1,6 @@
+.control{
+    display: inline-block
+}
+div.decoder{
+    display: flex;
+}
