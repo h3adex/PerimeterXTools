@@ -8,10 +8,20 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	pxutils "github.com/incizzle/perimeterx-utils-go"
+	"os"
 )
 
 type Response struct {
 	Payload	string
+	Factor int
+}
+
+type PcPayload struct {
+	Payload string `json:"payload"`
+	UUID    string `json:"uuid"`
+	Tag     string `json:"tag"`
+	Ft      string `json:"ft"`
 }
 
 func encode(t string, n int) string {
@@ -69,12 +79,26 @@ func main() {
 		_, _ = fmt.Fprint(w, encodedResult)
 	}
 
+	PcHandler := func(w http.ResponseWriter, req *http.Request) {
+		var reqPayload PcPayload
+		err := json.NewDecoder(req.Body).Decode(&reqPayload)
+		if err != nil {
+			http.Error(w, "error: unable to read req.Body", http.StatusBadRequest)
+			return
+		}
+		//https://github.com/incizzle/perimeterx-utils-go
+		//thank you for providing this package
+		pc := pxutils.CreatePC(reqPayload.Payload, fmt.Sprintf("%s:%s:%s", reqPayload.UUID, reqPayload.Tag, reqPayload.Ft))
+		_, _ = fmt.Fprint(w, pc)
+	}
+
 	http.HandleFunc("/", PerimeterXHandler)
 	http.HandleFunc("/decode", DecodeHandler)
 	http.HandleFunc("/encode", EncodeHandler)
+	http.HandleFunc("/pc", PcHandler)
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	log.Fatal(http.ListenAndServe(":8000", nil))
-	//log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
+	//log.Fatal(http.ListenAndServe(":8000", nil))
+	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
 }
 

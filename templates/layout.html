@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Mauritz">
+    <meta name="author" content="">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -12,21 +12,33 @@
 
 
 <h1 class="title">PerimeterX Decode/Encode</h1>
+
+<div class="pc">
+    <p class="subtitle is-3"></p>
+    <input class="input" id="uuid" type="text" placeholder="uuid: e.g c4b9c77c-8af5-44de-9b8e-7990048c0f4b" style="width: 350px;"><br>
+    <input class="input" id="ft" type="text" placeholder="ft: e.g 180" style="width: 350px;"><br>
+    <input class="input" id="tag" type="text" placeholder="tag: e.g v.6.1.2" style="width: 350px;"><br>
+</div>
+<br>
+
 <div class="decoder">
     <div class="control">
         <label>
-            <textarea class="textarea has-fixed-size" name="payload" id="input" cols="70" rows="30" placeholder="aUkQRhAIEGJqEB4QVhAISRBiagMQCBAQHhBiagAQCBAQHhBiagEQCBAQHhBiagYQCBAQHhBiagcQCBAQHhBiagQQCBAQHhBiagUQCBAQHhBiagoQCBAQHhBiagsQCBAQHhBiagMCEAgQEE9Pbw=="></textarea>
+            <textarea class="textarea has-fixed-size" name="payload" id="input" cols="70" rows="25" placeholder="aUkQRhAIEGJqEB4QVhAISRBiagMQCBAQHhBiagAQCBAQHhBiagEQCBAQHhBiagYQCBAQHhBiagcQCBAQHhBiagQQCBAQHhBiagUQCBAQHhBiagoQCBAQHhBiagsQCBAQHhBiagMCEAgQEE9Pbw=="></textarea>
         </label>
     </div>
     <div class="control">
         <label>
-            <textarea class="textarea has-fixed-size" name="payload" id="output" cols="70" rows="30" readonly></textarea>
+            <textarea class="textarea has-fixed-size" name="payload" id="output" cols="70" rows="25" readonly></textarea>
         </label>
     </div>
 </div>
+<br>
 <button  id="decode" class="button is-light">Decode</button>
 <button  id="encode" class="button is-light">Encode</button>
 <button  onclick="prettyPrint()" class="button is-success is-light">Prettify JSON</button>
+<button  id="getPC" class="button is-success is-light">Calculate PC</button>
+<input class="input" id="pcResult" type="text" placeholder="pc" style="width: 350px;" readonly><br>
 <script src="/static/js/index.js"></script>
 
 </body>
